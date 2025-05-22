@@ -1,3 +1,4 @@
+import 'package:chagi_meat_ujin/src/map/presentation/screens/map.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -10,8 +11,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  @TextEditingController passwordController = TextEditingController();
-  TextEditingController loginController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -25,16 +27,16 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 Spacer(),
                 TextFormField(
-                  controller: loginController,
+                  controller: emailController,
                   decoration: InputDecoration(
-                    labelText: 'Логин',
-                    hintText: 'Введите логин',
+                    labelText: 'Email',
+                    hintText: 'Введите email',
                   ),
-                  keyboardType: TextInputType.visiblePassword,
+                  keyboardType: TextInputType.emailAddress,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Введите логин';
+                      return 'Введите email';
                     }
                     return null;
                   },
@@ -55,15 +57,36 @@ class _RegisterPageState extends State<RegisterPage> {
                     return null;
                   },
                 ),
+                TextFormField(
+                  controller: confirmPasswordController,
+                  decoration: InputDecoration(
+                    labelText: 'Подтвердите пароль',
+                    hintText: 'Введите пароль еще раз',
+                  ),
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Введите пароль еще раз';
+                    }
+                    if (value != passwordController.text) {
+                      return 'Пароли не совпадают';
+                    }
+                    return null;
+                  },
+                ),
                 Spacer(),
                 ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Войти'),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, MapPage.routeName),
+                  child: Text('Регистрация'),
                 ),
               ],
             ),
           ),
         ),
       ),
-    );}
+    );
+  }
 }

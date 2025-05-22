@@ -1,5 +1,6 @@
+import 'package:chagi_meat_ujin/src/home/presentation/screens/home_page.dart';
+import 'package:chagi_meat_ujin/src/register/presentation/screens/register_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -12,7 +13,7 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   TextEditingController passwordController = TextEditingController();
-  TextEditingController loginController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -24,42 +25,66 @@ class _AuthPageState extends State<AuthPage> {
             key: _formKey,
             child: Column(
               children: [
-                Spacer(),
-                TextFormField(
-                  controller: loginController,
-                  decoration: InputDecoration(
-                    labelText: 'Логин',
-                    hintText: 'Введите логин',
-                  ),
-                  keyboardType: TextInputType.visiblePassword,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Введите логин';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    labelText: 'Пароль',
-                    hintText: 'Введите пароль',
-                  ),
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Введите пароль';
-                    }
-                    return null;
-                  },
+                Spacer(flex: 2),
+                Text(
+                  'Личный кабинет\nUjin',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                  textAlign: TextAlign.center,
                 ),
                 Spacer(),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Войти'),
+                Card(
+                  color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                            hintText: 'Введите email',
+                          ),
+                          keyboardType: TextInputType.emailAddress,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Введите email';
+                            }
+                            return null;
+                          },
+                        ),
+                        TextFormField(
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                            labelText: 'Пароль',
+                            hintText: 'Введите пароль',
+                          ),
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: true,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Введите пароль';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 16),
+                        FilledButton(
+                          onPressed: () =>
+                              Navigator.pushNamed(context, HomePage.routeName),
+                          child: Text('Войти'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Spacer(),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, RegisterPage.routeName);
+                  },
+                  child: Text('Зарегистрироваться'),
                 ),
               ],
             ),

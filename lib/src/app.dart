@@ -1,9 +1,12 @@
 import 'package:chagi_meat_ujin/src/auth/presentation/screens/auth_page.dart';
+import 'package:chagi_meat_ujin/src/home/presentation/screens/home_page.dart';
+import 'package:chagi_meat_ujin/src/map/presentation/screens/map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:openapi_generator_annotations/openapi_generator_annotations.dart';
 
+import 'register/presentation/screens/register_page.dart';
 import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
@@ -81,6 +84,12 @@ class MyApp extends StatelessWidget {
                     return const SampleItemDetailsView();
                   case SampleItemListView.routeName:
                     return const SampleItemListView();
+                  case RegisterPage.routeName:
+                    return const RegisterPage();
+                  case HomePage.routeName:
+                    return const HomePage();
+                  case MapPage.routeName:
+                    return const MapPage();
                   case AuthPage.routeName:
                   default:
                     return const AuthPage();
