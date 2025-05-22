@@ -2,6 +2,8 @@ import 'package:chagi_meat_ujin/src/home/presentation/screens/home_page.dart';
 import 'package:chagi_meat_ujin/src/register/presentation/screens/register_page.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../assets/assets.dart';
+
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
 
@@ -25,13 +27,23 @@ class _AuthPageState extends State<AuthPage> {
             key: _formKey,
             child: Column(
               children: [
-                Spacer(flex: 2),
+                Spacer(flex: 3),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12.0),
+                  child: Image.asset(
+                    AssetsData.brightness(Theme.of(context).brightness)
+                        .images
+                        .ujin_logo_png,
+                    height: 100,
+                  ),
+                ),
+                SizedBox(height: 16),
                 Text(
-                  'Личный кабинет\nUjin',
+                  'Личный кабинет',
                   style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center,
                 ),
-                Spacer(),
+                Spacer(flex: 2),
                 Card(
                   color: Theme.of(context).colorScheme.surfaceContainerHigh,
                   child: Padding(
@@ -86,6 +98,7 @@ class _AuthPageState extends State<AuthPage> {
                   },
                   child: Text('Зарегистрироваться'),
                 ),
+                SizedBox(height: 12.0)
               ],
             ),
           ),

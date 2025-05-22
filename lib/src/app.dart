@@ -29,6 +29,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context).copyWith(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Color.fromARGB(255, 98, 203, 193),
+        contrastLevel: 0,
+      ),
+    );
     // Glue the SettingsController to the MaterialApp.
     //
     // The ListenableBuilder Widget listens to the SettingsController for changes.
@@ -67,8 +73,8 @@ class MyApp extends StatelessWidget {
           // Define a light and dark color theme. Then, read the user's
           // preferred ThemeMode (light, dark, or system default) from the
           // SettingsController to display the correct theme.
-          theme: ThemeData(),
-          darkTheme: ThemeData.dark(),
+          theme: theme,
+          darkTheme: theme,
           themeMode: settingsController.themeMode,
 
           // Define a function to handle named routes in order to support
