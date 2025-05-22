@@ -1,3 +1,4 @@
+import 'package:chagi_meat_ujin/src/auth/presentation/screens/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -79,8 +80,10 @@ class MyApp extends StatelessWidget {
                   case SampleItemDetailsView.routeName:
                     return const SampleItemDetailsView();
                   case SampleItemListView.routeName:
-                  default:
                     return const SampleItemListView();
+                  case AuthPage.routeName:
+                  default:
+                    return const AuthPage();
                 }
               },
             );
